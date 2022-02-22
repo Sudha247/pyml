@@ -1,4 +1,4 @@
-open Stdcompat
+open Stdlib
 
 let option_find f x =
   try Some (f x)
@@ -57,7 +57,7 @@ let with_temp_file contents f =
   let (file, channel) = Filename.open_temp_file "pyml_tests" ".py" in
   Fun.protect begin fun () ->
     write_and_close channel (output_string channel) contents;
-    Stdcompat.In_channel.with_open_bin file (f file)
+    Stdlib.In_channel.with_open_bin file (f file)
   end
   ~finally:(fun () -> Sys.remove file)
 
